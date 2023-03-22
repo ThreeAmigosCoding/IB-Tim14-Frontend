@@ -1,0 +1,98 @@
+#loginContainer{
+  display: flex;
+  flex-direction: column;
+  vertical-align: middle;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  margin: auto;
+  background-color:#3A4F50;
+  align-items: center;
+  padding-top: 60px;
+  padding-bottom:40px;
+  border: 1px solid white;
+  box-shadow: 0 4px 6px -2px black;
+}
+
+#submitBtn{
+  background-color: #0EF6CC;
+  color: #151515;
+  width: 200px;
+  height: 60px;
+  font-size: 30px;
+  border: none;
+  margin-top: 70px;
+  box-shadow: 0 4px 6px -2px black;
+}
+
+.field{
+  width: 60%;
+  color: #FFFFFF;
+}
+
+.formTitle{
+  font-size: 60px;
+  font-weight: 550;
+  color: white;
+  margin-bottom: 80px;
+  text-shadow: 2px 2px 8px black;
+}
+
+p{
+  margin-top: 30px;
+  color: white;
+  margin-bottom: 20px;
+}
+
+#createAccount{
+  font-weight: bold;
+}
+span:hover{
+  cursor: pointer;
+}
+
+mat-icon{
+  margin-right: 3px;
+}
+
+.lines{
+  border: 1px solid white;
+  background-color: white;
+  width: 80%;
+  text-align: center;
+  height: 0;
+}
+
+mat-label{
+  color: white;
+}
+
+::ng-deep.mat-form-field-underline {
+  background-color: white !important;
+}
+
+#forgotPasswordSpan{
+  color: white;
+  width: 60%;
+  text-align: left;
+}
+
+@media only screen and (max-width: 600px){
+  form{
+    width: 450px;
+  }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,66 @@
+<div id="registerContainer">
+
+  <form
+    [formGroup]="registrationForm"
+    (ngSubmit)="register()">
+
+    <h1 class="formTitle">Register</h1>
+    <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Name</mat-label>
+      <input matInput type="text" name="name" formControlName="name"/>
+      <mat-icon matPrefix svgIcon="user_icon"></mat-icon>
+<!--      <mat-error *ngIf="registrationForm?.get('name')?.invalid">{{ generateErrString(registrationForm.get('name')?.errors) }}</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Surname</mat-label>
+      <input matInput type="text" name="surname" formControlName="surname"/>
+      <mat-icon matPrefix svgIcon="user_icon"></mat-icon>
+<!--      <mat-error *ngIf="registrationForm?.get('surname')?.invalid">{{ generateErrString(registrationForm.get('surname')?.errors) }}</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Mail</mat-label>
+      <input matInput type="text" name="mail" formControlName="email"/>
+      <mat-icon matPrefix svgIcon="envelope_closed_icon"></mat-icon>
+<!--      <mat-error *ngIf="registrationForm?.get('email')?.invalid">{{ generateErrString(registrationForm.get('email')?.errors) }}</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Phone</mat-label >
+      <input matInput type="text" name="phone" formControlName="phone"/>
+      <mat-icon matPrefix svgIcon="phone_icon"></mat-icon>
+<!--      <mat-error *ngIf="registrationForm?.get('phone')?.invalid">{{ generateErrString(registrationForm.get('phone')?.errors) }}</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Password</mat-label>
+      <input matInput [type]="hidePassword ? 'password' : 'text'" name="password"
+             formControlName="password"/>
+      <button mat-icon-button matSuffix type="button" (click)="changePasswordState()" [attr.aria-label]="'Hide password'"
+              [attr.aria-pressed]="hidePassword">
+        <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-icon matPrefix svgIcon="lock_close_icon"></mat-icon>
+<!--      <mat-error *ngIf="registrationForm?.get('password')?.invalid">{{ generateErrString(registrationForm.get('password')?.errors, 3) }}</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Confirm password</mat-label>
+      <input matInput [type]="hideConfirmPassword ? 'password' : 'text'"
+             name="confirmPassword" formControlName="confirmPassword"/>
+      <button mat-icon-button matSuffix type="button" (click)="changeConfirmPasswordState()"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hideConfirmPassword">
+        <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+      <mat-icon matPrefix svgIcon="lock_close_icon"></mat-icon>
+<!--      <mat-error *ngIf="registrationForm?.get('confirmPassword')?.invalid">{{ generateErrString(registrationForm.get('confirmPassword')?.errors, 3) }}</mat-error>-->
+    </mat-form-field>
+
+    <div>
+      <button mat-raised-button type="submit" id="submitBtn">Register</button>
+    </div>
+
+  </form>
+</div>
+
