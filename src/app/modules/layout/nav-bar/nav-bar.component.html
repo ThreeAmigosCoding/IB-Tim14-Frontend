@@ -1,0 +1,17 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <div >
+      <button class="nav_bar_logo_button" mat-button (click)="goHome()">
+        <span>Home</span>
+      </button>
+    </div>
+    <span class="flexExpand"></span>
+    <div *ngIf="role === null">
+      <button class="nav_bar_button" mat-button (click)="signIn()"> Sign In </button>
+      <button class="nav_bar_button" mat-button (click)="register()"> Register </button>
+    </div>
+    <div *ngIf="role !== null">
+      <button class="nav_bar_button" mat-button (click)="logout()"> Log Out </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>

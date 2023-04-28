@@ -20,6 +20,13 @@
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
+      <mat-label>Address</mat-label>
+      <input matInput type="text" name="address" formControlName="address"/>
+      <mat-icon matPrefix svgIcon="location_icon"></mat-icon>
+      <!--      <mat-error *ngIf="registrationForm?.get('surname')?.invalid">{{ generateErrString(registrationForm.get('surname')?.errors) }}</mat-error>-->
+    </mat-form-field>
+
+    <mat-form-field class="field" hideRequiredMarker>
       <mat-label>Mail</mat-label>
       <input matInput type="text" name="mail" formControlName="email"/>
       <mat-icon matPrefix svgIcon="envelope_closed_icon"></mat-icon>

@@ -1,5 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/forms";
+import {LoginCredentials} from "../model";
+import {AuthService} from "../service/auth.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login',
@@ -9,7 +12,7 @@ import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/for
 export class LoginComponent implements OnInit{
   hide: boolean = true;
 
-  constructor() {
+  constructor(private authService: AuthService, private router: Router) {
   }
 
   loginForm = new FormGroup({
@@ -21,6 +24,27 @@ export class LoginComponent implements OnInit{
   }
 
   logIn() {
+    let email = this.loginForm.value.mail;
+    let password = this.loginForm.value.password;
+
+    if (this.loginForm.valid && email !== null && email !== undefined && password !== null && password !== undefined){
+      let loginCredentials : LoginCredentials = {
+        email: email,
+        password: password
+      }
+      this.authService.login(loginCredentials).subscribe({
+        next: (result) => {
+          localStorage.setItem('user', JSON.stringify(result));
+          this.authService.setUserLogged();
+          this.router.navigate(['home']);
+        },
+        error: (error) => {
+          alert("Login failed!");
+        }
+      });
+    } else {
+      alert("Form is invalid!");
+    }
 
   }
 
