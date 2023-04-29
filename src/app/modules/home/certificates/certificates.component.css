@@ -1,0 +1,30 @@
+#certificates-container {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 50px;
+}
+
+.certificate-status {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.certificate {
+    background-color: #393E46;
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 6px 6px 6px -2px black;
+}
+
+.certificate p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.certificate-status-title {
+    color: #FFFFFF;
+    font-weight: 500;
+}
