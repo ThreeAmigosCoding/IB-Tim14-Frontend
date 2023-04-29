@@ -25,7 +25,7 @@ mat-toolbar-row{
 .nav_bar_button{
   margin: 0 5px;
   background-color: #0EF6CC;
-  color: #151515;
+  color: #151515 !important;
   border-radius: 30px;
   border: none;
   font-size: 18px;

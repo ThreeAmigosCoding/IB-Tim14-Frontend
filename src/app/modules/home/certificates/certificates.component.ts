@@ -35,12 +35,7 @@ export class CertificatesComponent implements OnInit{
     }
 
     public download(alias: string): void {
-        this.certificateService.downloadCertificate(alias).subscribe({
-                error: err => {
-                    alert(err.message);
-                }
-            }
-        )
+        this.certificateService.downloadCertificate(alias);
     }
 
 }

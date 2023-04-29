@@ -22,7 +22,19 @@ export class CertificateService {
         return this.http.get<Certificate[]>(environment.apiHost + 'certificate/certificates')
     }
 
-    public downloadCertificate(alias: string) : Observable<any> {
-        return this.http.get<any>(environment.apiHost + 'certificate/download/' + alias);
+    public downloadCertificate(alias: string) : void {
+        this.http.get(environment.apiHost + 'certificate/download/' + alias, {responseType: 'blob' as 'json'})
+            .subscribe((response: any) =>{
+                let filename = alias + ".crt";
+                let dataType = response.type;
+                let binaryData = [];
+                binaryData.push(response);
+                let downloadLink = document.createElement('a');
+                downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
+                if (filename)
+                    downloadLink.setAttribute('download', filename);
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+            });
     }
 }

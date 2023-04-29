@@ -11,7 +11,7 @@ import {MatInputModule} from "@angular/material/input";
 @NgModule({
   declarations: [
     HomeScreenComponent,
-    RequestsComponent
+    RequestsComponent,
     CertificatesComponent
   ],
     imports: [
