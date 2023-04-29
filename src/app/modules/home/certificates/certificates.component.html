@@ -1,0 +1,37 @@
+<div id="certificates-container">
+
+    <h2 class="certificate-status-title" *ngIf="validCertificates.length != 0">Valid certificates</h2>
+    <div class="certificate-status">
+        <div class="certificate" *ngFor="let validCertificate of validCertificates">
+            <span>
+                <p>Alias: {{ validCertificate.alias }}</p>
+                <p>Signature Algorithm: {{ validCertificate.signatureAlgorithm }}</p>
+                <p>Certificate Type: {{ validCertificate.type }}</p>
+                <p>Owner: {{ validCertificate.owner.name }} {{validCertificate.owner.surname}}</p>
+                <p>Issuer: {{ validCertificate.issuerAlias }}</p>
+                <p>Valid from: {{ validCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid to: {{ validCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid: {{ validCertificate.valid}}</p>
+                <button class="download-button" type="submit" (click)="download(validCertificate.alias)">Download</button>
+            </span>
+        </div>
+    </div>
+
+    <h2 class="certificate-status-title" *ngIf="invalidCertificates.length != 0">Invalid certificates</h2>
+    <div class="certificate-status">
+        <div class="certificate" *ngFor="let invalidCertificate of invalidCertificates">
+            <span>
+                <p>Alias: {{ invalidCertificate.alias }}</p>
+                <p>Signature Algorithm: {{ invalidCertificate.signatureAlgorithm }}</p>
+                <p>Certificate Type: {{ invalidCertificate.type }}</p>
+                <p>Owner: {{ invalidCertificate.owner.name }} {{invalidCertificate.owner.surname}}</p>
+                <p>Issuer: {{ invalidCertificate.issuerAlias }}</p>
+                <p>Valid from: {{ invalidCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid to: {{ invalidCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid: {{ invalidCertificate.valid}}</p>
+                <button class="download-button" type="submit" (click)="download(invalidCertificate.alias)">Download</button>
+            </span>
+        </div>
+    </div>
+
+</div>
