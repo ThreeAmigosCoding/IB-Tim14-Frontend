@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {AuthModule} from "./modules/auth/auth.module";
+import { HomeModule } from './modules/home/home.module';
 import {LayoutModule} from "./modules/layout/layout.module";
 import {TokenInterceptor} from "./modules/auth/tokenInterceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
@@ -18,7 +18,8 @@ import {HTTP_INTERCEPTORS} from "@angular/common/http";
     AppRoutingModule,
     NoopAnimationsModule,
     AuthModule,
-    LayoutModule
+    LayoutModule,
+    HomeModule
   ],
   providers: [
     {

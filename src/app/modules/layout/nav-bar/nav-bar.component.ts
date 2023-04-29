@@ -36,4 +36,14 @@ export class NavBarComponent implements OnInit{
   logout() {
     this.authService.logout();
   }
+
+  requestsOverview() {
+    // if (this.role == "ROLE_ADMIN") {
+    //   this.router.navigate(['login'])
+    // }
+    // else {
+    //   this.router.navigate(['register'])
+    // }
+    this.router.navigate(['requests'])
+  }
 }
