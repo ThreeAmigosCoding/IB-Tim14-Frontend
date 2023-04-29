@@ -8,7 +8,11 @@
                 <p>Signature Algorithm: {{ validCertificate.signatureAlgorithm }}</p>
                 <p>Certificate Type: {{ validCertificate.type }}</p>
                 <p>Owner: {{ validCertificate.owner.name }} {{validCertificate.owner.surname}}</p>
-                <p>Issued: {{ validCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Issuer: {{ validCertificate.issuerAlias }}</p>
+                <p>Valid from: {{ validCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid to: {{ validCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid: {{ validCertificate.valid}}</p>
+                <button class="download-button" type="submit" (click)="download(validCertificate.alias)">Download</button>
             </span>
         </div>
     </div>
@@ -21,7 +25,11 @@
                 <p>Signature Algorithm: {{ invalidCertificate.signatureAlgorithm }}</p>
                 <p>Certificate Type: {{ invalidCertificate.type }}</p>
                 <p>Owner: {{ invalidCertificate.owner.name }} {{invalidCertificate.owner.surname}}</p>
-                <p>Issued: {{ invalidCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Issuer: {{ invalidCertificate.issuerAlias }}</p>
+                <p>Valid from: {{ invalidCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid to: {{ invalidCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid: {{ invalidCertificate.valid}}</p>
+                <button class="download-button" type="submit" (click)="download(invalidCertificate.alias)">Download</button>
             </span>
         </div>
     </div>

@@ -21,4 +21,8 @@ export class CertificateService {
     public getCertificates() : Observable<Certificate[]> {
         return this.http.get<Certificate[]>(environment.apiHost + 'certificate/certificates')
     }
+
+    public downloadCertificate(alias: string) : Observable<any> {
+        return this.http.get<any>(environment.apiHost + 'certificate/download/' + alias);
+    }
 }

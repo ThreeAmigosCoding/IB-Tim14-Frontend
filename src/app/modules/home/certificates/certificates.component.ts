@@ -18,8 +18,7 @@ export class CertificatesComponent implements OnInit{
     }
 
     ngOnInit(): void {
-        this.certificateService.getCertificates().subscribe(
-            {
+        this.certificateService.getCertificates().subscribe({
                 next: result => {
                     this.validCertificates = result.filter((certificate) => {
                         return certificate.valid;
@@ -33,6 +32,15 @@ export class CertificatesComponent implements OnInit{
                 }
             }
         );
+    }
+
+    public download(alias: string): void {
+        this.certificateService.downloadCertificate(alias).subscribe({
+                error: err => {
+                    alert(err.message);
+                }
+            }
+        )
     }
 
 }
