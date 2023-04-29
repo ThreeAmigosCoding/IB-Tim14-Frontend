@@ -1,0 +1,57 @@
+#requests-container {
+  display: flex;
+  flex-direction: column;
+  margin: 25px 50px;
+}
+
+.request-status {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.request {
+  background-color: #393E46;
+  color: #FFFFFF;
+  border-radius: 20px;
+  padding: 10px 20px;
+  box-shadow: 6px 6px 6px -2px black;
+}
+
+.request p {
+  font-size: 18px;
+  font-weight: 400;
+}
+
+.request-status-title {
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+.status-decision-buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  gap: 20px;
+  margin-bottom: 10px;
+}
+
+.accept-button, .decline-button {
+  box-shadow: 0 4px 2px -2px black;
+  color: #222831;
+  border-radius: 20px;
+  border: transparent;
+  height: 50px;
+  font-weight: 400;
+  font-size: 18px;
+  width: 100px;
+}
+
+.accept-button {
+  background-color: #00FFF5;
+}
+
+.decline-button {
+  background-color: #F84A4A;
+}

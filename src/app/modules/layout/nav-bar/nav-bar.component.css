@@ -29,8 +29,9 @@ mat-toolbar-row{
   border-radius: 30px;
   border: none;
   font-size: 18px;
-  width: 160px;
+  min-width: 160px;
   height: 40px;
+  padding: 5px 30px;
   box-shadow: 0 4px 2px -2px black;
   position: relative;
   z-index: 3;

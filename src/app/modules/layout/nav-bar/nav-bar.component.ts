@@ -37,6 +37,10 @@ export class NavBarComponent implements OnInit{
     this.authService.logout();
   }
 
+  requestsOverview() {
+    this.router.navigate(['requests']);
+  }
+  
   certificates(): void {
     this.router.navigate(['certificates']);
   }
