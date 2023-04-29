@@ -38,12 +38,10 @@ export class NavBarComponent implements OnInit{
   }
 
   requestsOverview() {
-    // if (this.role == "ROLE_ADMIN") {
-    //   this.router.navigate(['login'])
-    // }
-    // else {
-    //   this.router.navigate(['register'])
-    // }
-    this.router.navigate(['requests'])
+    this.router.navigate(['requests']);
+  }
+  
+  certificates(): void {
+    this.router.navigate(['certificates']);
   }
 }

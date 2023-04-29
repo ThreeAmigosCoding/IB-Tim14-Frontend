@@ -4,10 +4,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import {AuthModule} from "./modules/auth/auth.module";
-import { HomeModule } from './modules/home/home.module';
 import {LayoutModule} from "./modules/layout/layout.module";
 import {TokenInterceptor} from "./modules/auth/tokenInterceptor";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {HomeModule} from "./modules/home/home.module";
 
 @NgModule({
   declarations: [
