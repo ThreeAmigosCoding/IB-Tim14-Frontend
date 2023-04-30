@@ -5,6 +5,10 @@ import {LayoutModule} from "../layout/layout.module";
 import { RequestsComponent } from './requests/requests.component';
 import { CertificatesComponent } from './certificates/certificates.component';
 import {MatInputModule} from "@angular/material/input";
+import { AddCertificateComponent } from './add-certificate/add-certificate.component';
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {MatListModule} from "@angular/material/list";
+import {MatCheckboxModule} from "@angular/material/checkbox";
 
 
 
@@ -12,12 +16,17 @@ import {MatInputModule} from "@angular/material/input";
   declarations: [
     HomeScreenComponent,
     RequestsComponent,
-    CertificatesComponent
+    CertificatesComponent,
+    AddCertificateComponent
   ],
     imports: [
         CommonModule,
         LayoutModule,
-        MatInputModule
+        MatInputModule,
+        ReactiveFormsModule,
+        MatListModule,
+        FormsModule,
+        MatCheckboxModule
     ]
 
 })

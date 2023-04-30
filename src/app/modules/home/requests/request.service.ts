@@ -11,6 +11,10 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
+  public createRequest(certificateRequest: CertificateRequest): Observable<CertificateRequest[]> {
+      return this.http.post<CertificateRequest[]>(environment.apiHost + "certificate/create-request", certificateRequest);
+  }
+
   public getAllRequests(): Observable<CertificateRequest[]> {
     return this.http.get<CertificateRequest[]>(environment.apiHost + "certificate/certificate-requests");
   }
@@ -19,8 +23,8 @@ export class RequestService {
     return this.http.get<CertificateRequest[]>(environment.apiHost + "certificate/certificate-requests/" + userID);
   }
 
-  public createCertificate(id: number) : Observable<any> {
-    return this.http.post<any>(environment.apiHost + "certificate/create-certificate/" + id, id);
+  public createCertificate(userId: number, requestId: number) : Observable<any> {
+    return this.http.post<any>(environment.apiHost + "certificate/create-certificate/" + userId + "/" + requestId, userId);
   }
 
   public rejectCertificate(id: number) : Observable<any> {
