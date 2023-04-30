@@ -12,16 +12,17 @@ export class RequestsComponent implements OnInit{
 
   role: any;
 
-  certificate: CertificateRequest = {
-    id: 1,
-    signatureAlgorithm: "SHA-256",
-    issuerId: 123,
-    requestDate: new Date("2022-04-29"),
-    type: CertificateType.END,
-    ownerId: 456,
-    approved: true,
-    flags: "some flags"
-  };
+  // certificate: CertificateRequest = {
+  //   id: 1,
+  //   signatureAlgorithm: "SHA-256",
+  //   issuerId: 123,
+  //   issuerSerialNumber: "",
+  //   requestDate: new Date("2022-04-29"),
+  //   type: CertificateType.END,
+  //   ownerId: 456,
+  //   approved: true,
+  //   flags: "some flags"
+  // };
 
   // certificateRequests: CertificateRequest[] = [this.certificate];
   pendingRequests: CertificateRequest[] = []
@@ -111,9 +112,12 @@ export interface CertificateRequest {
   id: number;
   signatureAlgorithm: string;
   issuerId: number;
+  issuerOwnerId: number;
+  issuerSerialNumber: string;
   requestDate: Date;
   type: CertificateType;
   ownerId: number;
+  ownerName: string;
   approved: boolean;
   flags: string;
 }

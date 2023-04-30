@@ -40,8 +40,13 @@ export class NavBarComponent implements OnInit{
   requestsOverview() {
     this.router.navigate(['requests']);
   }
-  
+
   certificates(): void {
     this.router.navigate(['certificates']);
   }
+
+  add() {
+    this.router.navigate(['add-certificate'])
+  }
+
 }
