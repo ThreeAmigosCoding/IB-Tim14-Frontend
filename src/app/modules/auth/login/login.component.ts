@@ -3,6 +3,8 @@ import {FormControl, FormGroup, ValidationErrors, Validators} from "@angular/for
 import {LoginCredentials} from "../model";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
+import {ResetPasswordComponent} from "../reset-password/reset-password.component";
+import {MatDialog} from "@angular/material/dialog";
 
 @Component({
   selector: 'app-login',
@@ -10,20 +12,20 @@ import {Router} from "@angular/router";
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit{
-  hide: boolean = true;
+    hide: boolean = true;
 
-  constructor(private authService: AuthService, private router: Router) {
-  }
+    constructor(private authService: AuthService, private router: Router, public dialog: MatDialog,) {
+    }
 
-  loginForm = new FormGroup({
+    loginForm = new FormGroup({
     mail: new FormControl('', [Validators.email, Validators.required]),
     password: new FormControl('', [Validators.minLength(3), Validators.required]),
-  });
+    });
 
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
-  logIn() {
+    logIn() {
     let email = this.loginForm.value.mail;
     let password = this.loginForm.value.password;
 
@@ -46,16 +48,21 @@ export class LoginComponent implements OnInit{
       alert("Form is invalid!");
     }
 
-  }
+    }
 
-  changePasswordState(){
+    changePasswordState(){
     this.hide = !this.hide;
-  }
+    }
+
+    forgotPassword(): void {
+        this.dialog.open(ResetPasswordComponent);
+    }
 
   // generateErrString(errors: ValidationErrors | null | undefined, minmax: number = 0): string{
   //   if (errors != undefined) return this.validatorErrService.generateErrorString(errors, minmax);
   //
   //   return "";
   // }
+
 
 }

@@ -8,8 +8,7 @@
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>E-Mail</mat-label>
       <input matInput type="text" name="mail" formControlName="mail"/>
-      <mat-icon matPrefix svgIcon="envelope_closed_icon"></mat-icon>
-<!--      <mat-error *ngIf="loginForm?.get('mail')?.invalid">{{ generateErrString(loginForm.get('mail')?.errors) }}</mat-error>-->
+      <mat-error *ngIf="loginForm?.get('mail')?.invalid">Invalid email</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
@@ -18,11 +17,10 @@
       <button mat-icon-button matSuffix type="button" (click)="changePasswordState()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
-      <mat-icon matPrefix svgIcon="lock_close_icon"></mat-icon>
-<!--      <mat-error *ngIf="loginForm?.get('password')?.invalid">{{ generateErrString(loginForm.get('password')?.errors, 3) }}</mat-error>-->
+      <mat-error *ngIf="loginForm?.get('password')?.invalid">Invalid password</mat-error>
     </mat-form-field>
 
-<!--    <span id="forgotPasswordSpan" (click)="forgotPassword()">Forgot password ?</span>-->
+    <span id="forgotPasswordSpan" (click)="forgotPassword()">Forgot password?</span>
 
     <div>
       <button mat-raised-button type="submit" id="submitBtn">Sign in</button>
