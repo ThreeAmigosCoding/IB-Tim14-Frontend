@@ -53,7 +53,7 @@ export class RegisterComponent implements OnInit{
     if (this.registrationForm.valid){
       this.authService.signUp(this.generateUserData()).subscribe({
         next: (result) =>{
-          alert("Registration successful!");
+          alert("Registration successful! An activation mail has been sent to your email!");
           this.router.navigate(['home']);
         },
         error: (error) => {
