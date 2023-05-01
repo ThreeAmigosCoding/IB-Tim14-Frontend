@@ -39,4 +39,10 @@
         </div>
     </div>
 
+    <div>
+        <h2 class="certificate-status-title">Check certificate validity from uploaded copy</h2>
+        <button class="download-button" (click)="fileInput.click()">Choose file</button>
+        <input type="file" #fileInput class="certificate-pick" (change)="checkValidityFromCopy($event)" (click)="onFileInputClick($event)">
+    </div>
+
 </div>
