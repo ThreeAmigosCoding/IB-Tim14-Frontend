@@ -12,7 +12,12 @@
                 <p>Valid from: {{ validCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
                 <p>Valid to: {{ validCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
                 <p>Valid: {{ validCertificate.valid}}</p>
-                <button class="download-button" type="submit" (click)="download(validCertificate.alias)">Download</button>
+                <p>Serial: {{ validCertificate.serialNumber}}</p>
+                <div class="button-div">
+                    <button class="download-button" type="button" (click)="download(validCertificate.alias)">Download</button>
+                    <button class="download-button" type="button"
+                            (click)="checkValidityFromSerialNumber(validCertificate.serialNumber)">Check validity</button>
+                </div>
             </span>
         </div>
     </div>
@@ -32,6 +37,12 @@
                 <button class="download-button" type="submit" (click)="download(invalidCertificate.alias)">Download</button>
             </span>
         </div>
+    </div>
+
+    <div>
+        <h2 class="certificate-status-title">Check certificate validity from uploaded copy</h2>
+        <button class="download-button" (click)="fileInput.click()">Choose file</button>
+        <input type="file" #fileInput class="certificate-pick" (change)="checkValidityFromCopy($event)" (click)="onFileInputClick($event)">
     </div>
 
 </div>

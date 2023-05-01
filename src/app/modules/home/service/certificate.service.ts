@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {BehaviorSubject, Observable} from "rxjs";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 import {Certificate} from "../certificates/certificates.component";
 import {environment} from "../../../../environments/environment";
 
@@ -36,5 +36,16 @@ export class CertificateService {
                 document.body.appendChild(downloadLink);
                 downloadLink.click();
             });
+    }
+
+    public checkCertificateValidityFromSerialNumber(serialNumber: string): Observable<string>{
+        return this.http.get(environment.apiHost + "certificate/validity/" + serialNumber,
+            { responseType: 'text' });
+    }
+
+    public checkCertificateValidityFromCopy(file: File): Observable<string>{
+        let formData : FormData = new FormData();
+        formData.append('certificate', file);
+        return this.http.put(environment.apiHost + "certificate/validity", formData, {responseType:'text'});
     }
 }

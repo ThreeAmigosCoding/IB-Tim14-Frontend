@@ -38,10 +38,43 @@ export class CertificatesComponent implements OnInit{
         this.certificateService.downloadCertificate(alias);
     }
 
+    checkValidityFromSerialNumber(serialNumber: string): void{
+        this.certificateService.checkCertificateValidityFromSerialNumber(serialNumber).subscribe({
+           next: (result) => {
+               alert(result);
+           },
+           error: (error) => {
+               alert(error.message)
+           }
+        });
+    }
+
+    checkValidityFromCopy($event: any) {
+        let files = $event.target.files;
+        if (files.length === 0) {
+            return;
+        }
+        const fileToUpload = files.item(0);
+
+        if (fileToUpload != null){
+            this.certificateService.checkCertificateValidityFromCopy(fileToUpload).subscribe({
+               next: (result) => {
+                   alert(result);
+               },
+               error: (error) => {
+                   alert(error.error);
+               }
+            });
+        }
+    }
+
+    onFileInputClick(event: any) {
+        event.target.value = null;
+    }
 }
 
 export interface Certificate {
-    serialNumber: number;
+    serialNumber: string;
     signatureAlgorithm: string;
     issuerAlias: string;
     validFrom: Date;
