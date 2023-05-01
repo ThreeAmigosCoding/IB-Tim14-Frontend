@@ -37,4 +37,9 @@ export class CertificateService {
                 downloadLink.click();
             });
     }
+
+    public checkCertificateValidityFromSerialNumber(serialNumber: string): Observable<string>{
+        return this.http.get(environment.apiHost + "certificate/validity/" + serialNumber,
+            { responseType: 'text' });
+    }
 }

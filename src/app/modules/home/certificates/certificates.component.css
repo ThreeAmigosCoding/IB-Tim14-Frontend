@@ -37,7 +37,12 @@
     height: 50px;
     font-weight: 400;
     font-size: 18px;
-    width: 100px;
     background-color: #00FFF5;
     margin-bottom: 10px;
+}
+
+.button-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }

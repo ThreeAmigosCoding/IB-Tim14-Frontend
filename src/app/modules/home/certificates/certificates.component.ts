@@ -38,10 +38,21 @@ export class CertificatesComponent implements OnInit{
         this.certificateService.downloadCertificate(alias);
     }
 
+    checkValidityFromSerialNumber(serialNumber: string): void{
+        this.certificateService.checkCertificateValidityFromSerialNumber(serialNumber).subscribe({
+           next: (result) => {
+               alert(result);
+           },
+           error: (error) => {
+               alert(error.message)
+           }
+        });
+    }
+
 }
 
 export interface Certificate {
-    serialNumber: number;
+    serialNumber: string;
     signatureAlgorithm: string;
     issuerAlias: string;
     validFrom: Date;
