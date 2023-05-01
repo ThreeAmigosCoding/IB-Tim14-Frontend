@@ -34,7 +34,11 @@
                 <p>Valid from: {{ invalidCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
                 <p>Valid to: {{ invalidCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
                 <p>Valid: {{ invalidCertificate.valid}}</p>
-                <button class="download-button" type="submit" (click)="download(invalidCertificate.alias)">Download</button>
+                <div class="button-div">
+                    <button class="download-button" type="button" (click)="download(invalidCertificate.alias)">Download</button>
+                    <button class="download-button" type="button"
+                            (click)="checkValidityFromSerialNumber(invalidCertificate.serialNumber)">Check validity</button>
+                </div>
             </span>
         </div>
     </div>
