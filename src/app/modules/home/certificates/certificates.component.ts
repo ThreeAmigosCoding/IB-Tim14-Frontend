@@ -44,7 +44,7 @@ export class CertificatesComponent implements OnInit{
                alert(result);
            },
            error: (error) => {
-               alert(error.message)
+               alert(JSON.parse(error.error).message)
            }
         });
     }

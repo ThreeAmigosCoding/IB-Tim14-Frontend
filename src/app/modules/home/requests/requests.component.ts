@@ -72,7 +72,7 @@ export class RequestsComponent implements OnInit{
   }
 
   acceptRequest(id: number, index: number) {
-    this.requestService.createCertificate(id, this.authService.getUserId()).subscribe(
+    this.requestService.createCertificate(this.authService.getUserId(), id).subscribe(
       {
         next: (response) => {
           this.approvedRequests.push(this.pendingRequests[index]);
