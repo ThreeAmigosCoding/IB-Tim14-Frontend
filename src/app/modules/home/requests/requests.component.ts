@@ -11,6 +11,7 @@ import {RequestService} from "./request.service";
 export class RequestsComponent implements OnInit{
 
   role: any;
+  userId: any;
 
   // certificate: CertificateRequest = {
   //   id: 1,
@@ -26,6 +27,7 @@ export class RequestsComponent implements OnInit{
 
   // certificateRequests: CertificateRequest[] = [this.certificate];
   pendingRequests: CertificateRequest[] = []
+  pendingIssuerRequests: CertificateRequest[] = []
   approvedRequests: CertificateRequest[] = []
   rejectedRequests: CertificateRequest[] = []
 
@@ -34,6 +36,7 @@ export class RequestsComponent implements OnInit{
   ngOnInit(): void {
     this.authService.userLoggedState$.subscribe( result => {
       this.role = result;
+      this.userId = this.authService.getUserId();
       if (this.role == "ROLE_ADMIN") {
         this.loadAll();
       }
@@ -54,6 +57,7 @@ export class RequestsComponent implements OnInit{
           this.approvedRequests.push(req);
         else
           this.rejectedRequests.push(req);
+
       }
     })
   }
@@ -67,6 +71,13 @@ export class RequestsComponent implements OnInit{
           this.approvedRequests.push(req);
         else
           this.rejectedRequests.push(req);
+      }
+    })
+    this.requestService.getAllRequests().subscribe(result => {
+      for (let req of result) {
+          if (req.issuerOwnerId == this.authService.getUserId() && req.approved == null)
+              this.pendingRequests.push(req);
+
       }
     })
   }
@@ -90,7 +101,7 @@ export class RequestsComponent implements OnInit{
   }
 
   declineRequest(id: number, index: number) {
-    this.requestService.rejectCertificate(id).subscribe(
+    this.requestService.rejectCertificate(this.authService.getUserId(), id).subscribe(
       {
         next: (response) => {
           this.rejectedRequests.push(this.pendingRequests[index]);

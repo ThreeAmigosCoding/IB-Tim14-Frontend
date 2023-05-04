@@ -17,7 +17,7 @@ export class AddCertificateComponent implements OnInit{
     serialNumber: string = "";
 
     addCertificateForm = new FormGroup({
-        issuerSerialNumber: new FormControl('', [Validators.required])
+        issuerSerialNumber: new FormControl('', [ Validators.required])
     });
     flag1: any;
     flag2: any;
@@ -104,6 +104,9 @@ export class AddCertificateComponent implements OnInit{
         if (this.flag7) {
             selectedFlags.push("7");
         }
+
+        if (selectedFlags.length == 0)
+            return "";
 
         return selectedFlags.join(",");
     }

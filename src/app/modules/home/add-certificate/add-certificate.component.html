@@ -3,7 +3,7 @@
         <div class="form-group">
             <label>Signature Algorithm:</label>
             <ul id="algorithms-list">
-                <mat-list-item [ngClass]="{'selected-text': selectedAlgorithm == 'SHA256withRSA',
+                <mat-list-item class="selected-item-text" [ngClass]="{'selected-text': selectedAlgorithm == 'SHA256withRSA',
                  'selected-alg': selectedAlgorithm == 'SHA256withRSA'}"
                                (click)="changeSelectedAlgorithm('SHA256withRSA')">
                     SHA256withRSA
@@ -22,7 +22,7 @@
 
         </div>
 
-        <div class="form-group">
+        <div class="form-group" *ngIf="selectedType != 'ROOT'">
             <label for="issuer-serial-number">Issuer Serial Number:</label>
             <input type="text" [(ngModel)]="serialNumber" formControlName="issuerSerialNumber" id="issuer-serial-number">
         </div>

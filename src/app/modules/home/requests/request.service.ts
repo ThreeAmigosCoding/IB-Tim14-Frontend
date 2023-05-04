@@ -27,8 +27,8 @@ export class RequestService {
     return this.http.post<any>(environment.apiHost + "certificate/create-certificate/" + userId + "/" + requestId, userId);
   }
 
-  public rejectCertificate(id: number) : Observable<any> {
-    return this.http.put<any>(environment.apiHost + "certificate/reject-certificate/" + id, id);
+  public rejectCertificate(userId: number, requestId: number) : Observable<any> {
+    return this.http.put<any>(environment.apiHost + "certificate/reject-certificate/" + userId + "/" + requestId, userId);
   }
 }
 
