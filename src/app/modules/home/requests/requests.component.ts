@@ -87,7 +87,7 @@ export class RequestsComponent implements OnInit{
       {
         next: (response) => {
           this.approvedRequests.push(this.pendingRequests[index]);
-          this.pendingRequests.splice(index);
+          this.pendingRequests.splice(index, 1);
           alert("Certificate created successfully!")
         },
         error: (error) => {
@@ -105,7 +105,7 @@ export class RequestsComponent implements OnInit{
       {
         next: (response) => {
           this.rejectedRequests.push(this.pendingRequests[index]);
-          this.pendingRequests.splice(index);
+          this.pendingRequests.splice(index, 1);
           alert("Certificate request rejected!")
         },
         error: (error) => {

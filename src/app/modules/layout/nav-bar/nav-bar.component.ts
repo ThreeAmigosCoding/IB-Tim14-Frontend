@@ -47,7 +47,10 @@ export class NavBarComponent implements OnInit{
   }
 
   add() {
-    this.router.navigate(['add-certificate'])
+    this.router.navigate(['add-certificate']);
   }
 
+  revokeOverview() {
+    this.router.navigate(['revoke-requests']);
+  }
 }

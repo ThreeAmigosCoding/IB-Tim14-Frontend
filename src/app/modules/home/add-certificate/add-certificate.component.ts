@@ -19,13 +19,14 @@ export class AddCertificateComponent implements OnInit{
     addCertificateForm = new FormGroup({
         issuerSerialNumber: new FormControl('', [ Validators.required])
     });
-    flag1: any;
-    flag2: any;
-    flag3: any;
-    flag4: any;
-    flag5: any;
-    flag6: any;
-    flag7: any;
+    flag1: boolean = true;
+    flag2: boolean = true;
+    flag3: boolean = true;
+    flag4: boolean = true;
+    flag5: boolean = true;
+    flag6: boolean = true;
+    flag7: boolean = true;
+
 
     constructor(private requestService: RequestService, private authService: AuthService) {
     }
@@ -37,11 +38,9 @@ export class AddCertificateComponent implements OnInit{
     addCertificate() {
         if (this.selectedType != 'ROOT') {
             if (!this.addCertificateForm.valid) {
+                alert("Form is not valid. Enter issuer serial number.")
                 return;
             }
-        }
-        else {
-            this.serialNumber = "";
         }
 
         let flagsString = this.getSelectedFlags();

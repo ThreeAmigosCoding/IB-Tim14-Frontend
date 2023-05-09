@@ -1,5 +1,5 @@
 <div id="form-container">
-    <form [formGroup]="addCertificateForm" (ngSubmit)="addCertificate()">
+    <form [formGroup]="addCertificateForm">
         <div class="form-group">
             <label>Signature Algorithm:</label>
             <ul id="algorithms-list">
@@ -60,6 +60,6 @@
         </section>
         </div>
 
-        <button id="submit-button" type="submit" [disabled]="!addCertificateForm.valid">Create Certificate</button>
+        <button id="submit-button" type="button" (click)="addCertificate()">Create Certificate</button>
     </form>
 </div>
