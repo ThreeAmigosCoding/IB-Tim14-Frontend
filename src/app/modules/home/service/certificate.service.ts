@@ -26,8 +26,10 @@ export class CertificateService {
     public downloadCertificate(alias: string, userId: number) : void {
         this.http.get(environment.apiHost + 'certificate/download/' + alias + "/" + userId, {responseType: 'blob' as 'json'})
             .subscribe((response: any) =>{
-                let filename = alias;
+                let filename = alias + ".crt";
                 let dataType = response.type;
+                if (dataType === "application/zip")
+                    filename = alias + ".zip";
                 let binaryData = [];
                 binaryData.push(response);
                 let downloadLink = document.createElement('a');

@@ -12,6 +12,7 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import { RevocationReasonComponent } from './revocation-reason/revocation-reason.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
+import { RevokeRequestsComponent } from './revoke-requests/revoke-requests.component';
 
 
 
@@ -21,7 +22,8 @@ import {MatButtonModule} from "@angular/material/button";
     RequestsComponent,
     CertificatesComponent,
     AddCertificateComponent,
-    RevocationReasonComponent
+    RevocationReasonComponent,
+    RevokeRequestsComponent
   ],
     imports: [
         CommonModule,

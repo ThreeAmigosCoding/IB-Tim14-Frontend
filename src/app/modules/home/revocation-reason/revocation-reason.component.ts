@@ -35,6 +35,7 @@ export class RevocationReasonComponent {
         }
         this.certificateService.createRevocationRequest(this.authService.getUserId(), revocationRequest).subscribe({
             next: () => {
+                alert("Revocation requests created successfully!")
                 this.dialogRef.close();
                 this.certificateService.getCertificates().subscribe({
                     next: result => {
@@ -52,7 +53,7 @@ export class RevocationReasonComponent {
 }
 
 export interface RevocationRequest {
-    id: number | null;
+    id: any;
     issuerId: number;
     revocationCertificateId: number;
     reason: string | null | undefined;
