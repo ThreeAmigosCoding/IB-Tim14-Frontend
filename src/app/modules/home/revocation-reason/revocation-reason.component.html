@@ -1,0 +1,13 @@
+<form id="revocation-reason-container" [formGroup]="revocationReasonForm">
+    <h1 mat-dialog-title id="modalTitle">Reset password</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="field" hideRequiredMarker appearance="fill">
+            <mat-label>Reason</mat-label>
+            <input id="revocation-reason" matInput type="text" name="reason" formControlName="reason"/>
+            <mat-error *ngIf="revocationReasonForm?.get('reason')?.invalid">Reason can't be empty.</mat-error>
+        </mat-form-field>
+    </div>
+    <div id="buttonDiv" class="modal-footer" mat-dialog-actions>
+        <button mat-button type="submit" (click)="createRevocationRequest()">Confirm</button>
+    </div>
+</form>

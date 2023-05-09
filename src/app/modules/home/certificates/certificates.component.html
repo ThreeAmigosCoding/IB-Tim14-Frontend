@@ -11,12 +11,13 @@
                 <p>Issuer: {{ validCertificate.issuerAlias }}</p>
                 <p>Valid from: {{ validCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
                 <p>Valid to: {{ validCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
-                <p>Valid: {{ validCertificate.valid}}</p>
                 <p>Serial: {{ validCertificate.serialNumber}}</p>
+                <p>Revoked: {{ validCertificate.revoked }}</p>
                 <div class="button-div">
                     <button class="download-button" type="button" (click)="download(validCertificate.alias)">Download</button>
                     <button class="download-button" type="button"
                             (click)="checkValidityFromSerialNumber(validCertificate.serialNumber)">Check validity</button>
+                    <button class="download-button revoke-button" (click)="openRevocationDialog(validCertificate)">Revoke</button>
                 </div>
             </span>
         </div>
@@ -33,7 +34,7 @@
                 <p>Issuer: {{ invalidCertificate.issuerAlias }}</p>
                 <p>Valid from: {{ invalidCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
                 <p>Valid to: {{ invalidCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
-                <p>Valid: {{ invalidCertificate.valid}}</p>
+                <p>Revoked: {{ invalidCertificate.revoked }}</p>
                 <div class="button-div">
                     <button class="download-button" type="button" (click)="download(invalidCertificate.alias)">Download</button>
                     <button class="download-button" type="button"

@@ -3,14 +3,15 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Certificate} from "../certificates/certificates.component";
 import {environment} from "../../../../environments/environment";
+import {RevocationRequest} from "../revocation-reason/revocation-reason.component";
 
 @Injectable({
   providedIn: 'root'
 })
 export class CertificateService {
 
-    certificates: BehaviorSubject<any> = new BehaviorSubject<any>(null);
-    certificatesState: Observable<any> = this.certificates.asObservable();
+    certificates: BehaviorSubject<Certificate[]> = new BehaviorSubject<Certificate[]>([]);
+    certificatesState = this.certificates.asObservable();
 
     constructor(private http: HttpClient) { }
 
@@ -22,10 +23,10 @@ export class CertificateService {
         return this.http.get<Certificate[]>(environment.apiHost + 'certificate/certificates')
     }
 
-    public downloadCertificate(alias: string) : void {
-        this.http.get(environment.apiHost + 'certificate/download/' + alias, {responseType: 'blob' as 'json'})
+    public downloadCertificate(alias: string, userId: number) : void {
+        this.http.get(environment.apiHost + 'certificate/download/' + alias + "/" + userId, {responseType: 'blob' as 'json'})
             .subscribe((response: any) =>{
-                let filename = alias + ".crt";
+                let filename = alias;
                 let dataType = response.type;
                 let binaryData = [];
                 binaryData.push(response);
@@ -47,5 +48,9 @@ export class CertificateService {
         let formData : FormData = new FormData();
         formData.append('certificate', file);
         return this.http.put(environment.apiHost + "certificate/validity", formData, {responseType:'text'});
+    }
+
+    public createRevocationRequest(userId: number, revocationRequest: RevocationRequest): Observable<RevocationRequest> {
+        return this.http.post<RevocationRequest>(environment.apiHost + "certificate/revocation/create/" + userId, revocationRequest);
     }
 }

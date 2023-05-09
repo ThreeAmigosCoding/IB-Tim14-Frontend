@@ -50,3 +50,7 @@
 .certificate-pick{
     visibility: hidden;
 }
+
+.revoke-button {
+    background-color: #F84A4A !important;
+}

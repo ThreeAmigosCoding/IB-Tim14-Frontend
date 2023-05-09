@@ -9,6 +9,9 @@ import { AddCertificateComponent } from './add-certificate/add-certificate.compo
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatListModule} from "@angular/material/list";
 import {MatCheckboxModule} from "@angular/material/checkbox";
+import { RevocationReasonComponent } from './revocation-reason/revocation-reason.component';
+import {MatDialogModule} from "@angular/material/dialog";
+import {MatButtonModule} from "@angular/material/button";
 
 
 
@@ -17,7 +20,8 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
     HomeScreenComponent,
     RequestsComponent,
     CertificatesComponent,
-    AddCertificateComponent
+    AddCertificateComponent,
+    RevocationReasonComponent
   ],
     imports: [
         CommonModule,
@@ -26,7 +30,9 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
         ReactiveFormsModule,
         MatListModule,
         FormsModule,
-        MatCheckboxModule
+        MatCheckboxModule,
+        MatDialogModule,
+        MatButtonModule
     ]
 
 })

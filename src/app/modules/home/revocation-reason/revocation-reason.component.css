@@ -1,0 +1,70 @@
+#revocation-reason-container {
+    display: flex;
+    flex-direction: column;
+    vertical-align: middle;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    width: 400px;
+    background-color: #222831;
+    margin: 0 auto;
+}
+
+.field{
+    margin-top: 15px;
+    color: #FFFFFF;
+    background-color: #222831 !important;
+}
+
+mat-label{
+    color: white;
+}
+
+mat-label{
+    margin-left: 5px;
+}
+
+mat-form-field{
+    width: 100%;
+}
+
+::ng-deep.mat-form-field-underline {
+    background-color: #222831 !important;
+}
+
+#modalTitle{
+    color: white;
+    font-weight: bold;
+    font-size: 17px;
+    margin: 0;
+}
+
+.modal-header{
+    text-align: left;
+    width: 100%;
+}
+
+::ng-deep mat-dialog-container{
+    padding: 0 !important;
+    overflow: hidden !important;
+    border: 2px solid white;
+}
+
+#snackBar{
+    width: 300px;
+}
+
+#buttonDiv{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+#buttonDiv button{
+    background-color: #00FFF5;
+    width: 100px;
+    text-align: center;
+    border-radius: 10px;
+    color: #151515;
+    font-weight: bold;
+}

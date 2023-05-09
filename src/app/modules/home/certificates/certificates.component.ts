@@ -1,5 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {CertificateService} from "../service/certificate.service";
+import {AuthService} from "../../auth/service/auth.service";
+import {MatDialog} from "@angular/material/dialog";
+import {ResetPasswordComponent} from "../../auth/reset-password/reset-password.component";
+import {RevocationReasonComponent} from "../revocation-reason/revocation-reason.component";
 
 @Component({
   selector: 'app-certificates',
@@ -14,17 +18,21 @@ export class CertificatesComponent implements OnInit{
 
     invalidCertificates: Certificate[] = [];
 
-    constructor(private certificateService: CertificateService) {
+    constructor(private certificateService: CertificateService, private authService: AuthService, public dialog: MatDialog) {
     }
 
     ngOnInit(): void {
-        this.certificateService.getCertificates().subscribe({
+        this.certificateService.certificatesState.subscribe({
                 next: result => {
                     this.validCertificates = result.filter((certificate) => {
-                        return certificate.valid;
+                        return !certificate.revoked
+                            && new Date(Date.now()) >= new Date(certificate.validFrom)
+                            && new Date(Date.now()) <= new Date(certificate.validTo);
                     });
                     this.invalidCertificates = result.filter((certificate) => {
-                        return !certificate.valid;
+                        return certificate.revoked
+                            || new Date(Date.now()) < new Date(certificate.validFrom)
+                            || new Date(Date.now()) > new Date(certificate.validTo);
                     });
                 },
                 error: err => {
@@ -32,10 +40,17 @@ export class CertificatesComponent implements OnInit{
                 }
             }
         );
+        this.certificateService.getCertificates().subscribe({
+            next: result => {
+                this.certificateService.setCertificatesState(result);
+            }, error: err => {
+                alert(err.error)
+            }
+        })
     }
 
     public download(alias: string): void {
-        this.certificateService.downloadCertificate(alias);
+        this.certificateService.downloadCertificate(alias, this.authService.getUserId());
     }
 
     checkValidityFromSerialNumber(serialNumber: string): void{
@@ -71,6 +86,10 @@ export class CertificatesComponent implements OnInit{
     onFileInputClick(event: any) {
         event.target.value = null;
     }
+
+    openRevocationDialog(certificate: Certificate) {
+        this.dialog.open(RevocationReasonComponent, {data: certificate});
+    }
 }
 
 export interface Certificate {
@@ -79,7 +98,7 @@ export interface Certificate {
     issuerAlias: string;
     validFrom: Date;
     validTo: Date;
-    valid: Boolean;
+    revoked: Boolean;
     type: string;
     owner: User;
     alias: string;
