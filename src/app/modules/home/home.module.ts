@@ -13,6 +13,7 @@ import { RevocationReasonComponent } from './revocation-reason/revocation-reason
 import {MatDialogModule} from "@angular/material/dialog";
 import {MatButtonModule} from "@angular/material/button";
 import { RevokeRequestsComponent } from './revoke-requests/revoke-requests.component';
+import {RouterOutlet} from "@angular/router";
 
 
 
@@ -34,7 +35,8 @@ import { RevokeRequestsComponent } from './revoke-requests/revoke-requests.compo
         FormsModule,
         MatCheckboxModule,
         MatDialogModule,
-        MatButtonModule
+        MatButtonModule,
+        RouterOutlet
     ]
 
 })

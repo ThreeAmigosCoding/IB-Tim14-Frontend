@@ -6,10 +6,15 @@ import {Component, OnInit} from '@angular/core';
   styleUrls: ['./home-screen.component.css']
 })
 export class HomeScreenComponent implements OnInit{
+    public isImageLoaded: boolean = false;
 
-  constructor() {
-  }
+    constructor() {
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
+
+    public onImageLoad(): void {
+        this.isImageLoaded = true;
+    }
 }
