@@ -41,7 +41,15 @@ export class LoginComponent implements OnInit{
           this.router.navigate(['home']);
         },
         error: (error) => {
-          alert("Login failed!");
+          if (error.error !== null){
+              alert(error.error.message);
+              if (error.error.message == "Your password expired!") {
+                  this.forgotPassword();
+              }
+          } else {
+              alert("Login Failed!");
+          }
+
         }
       });
     } else {
