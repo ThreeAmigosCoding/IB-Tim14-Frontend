@@ -5,6 +5,7 @@ import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {PasswordReset} from "../reset-password/reset-password.component";
+import {FormControl, ɵValue} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -21,24 +22,32 @@ export class AuthService {
 
     constructor(private http: HttpClient) {this.userLogged$.next(this.getRole()); }
 
-    login(credentials: LoginCredentials): Observable<MyToken>{
-    return this.http.post<MyToken>(environment.apiHost + 'user/login', credentials, {
-      headers: this.headers,
-    });
+    login(credentials: LoginCredentials): Observable<string>{
+        // return this.http.post<MyToken>(environment.apiHost + 'user/login', credentials, {
+        //   headers: this.headers,
+        // });
+        return this.http.post<string>(environment.apiHost + 'user/login', credentials);
+    }
+
+    twoStepAuthentication(email: string, code: ɵValue<FormControl<number | null>> | undefined): Observable<MyToken> {
+        return this.http.post<MyToken>(
+            environment.apiHost + 'user/two-step-authentication/' + email + "/" + code, {
+          headers: this.headers,
+        });
     }
 
     getRole(): any {
-    if (this.isLoggedIn()) {
-      const accessTokenString: any = localStorage.getItem('user');
-      const accessToken = JSON.parse(accessTokenString);
-      const helper = new JwtHelperService();
-      const roles = helper.decodeToken(accessToken.accessToken).role;
+        if (this.isLoggedIn()) {
+          const accessTokenString: any = localStorage.getItem('user');
+          const accessToken = JSON.parse(accessTokenString);
+          const helper = new JwtHelperService();
+          const roles = helper.decodeToken(accessToken.accessToken).role;
 
-      const roleNames = roles.map((obj: { name: any; }) => obj.name);
+          const roleNames = roles.map((obj: { name: any; }) => obj.name);
 
-      return roleNames;
-    }
-    return null;
+          return roleNames;
+        }
+        return null;
     }
 
     getUserId(): number{
@@ -70,12 +79,12 @@ export class AuthService {
     }
 
     signUp(user: UserRegistrationData): Observable<UserRegistrationData>{
-    return this.http.post<UserRegistrationData>(environment.apiHost + "user/register", user);
+        return this.http.post<UserRegistrationData>(environment.apiHost + "user/register", user);
     }
 
     logout(){
-    localStorage.removeItem('user');
-    this.setUserLogged();
+        localStorage.removeItem('user');
+        this.setUserLogged();
     }
 
     sendResetEmail(email: string | null | undefined): Observable<any> {

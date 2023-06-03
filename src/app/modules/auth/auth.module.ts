@@ -9,13 +9,15 @@ import { MatButtonModule } from "@angular/material/button";
 import { HttpClientModule} from "@angular/common/http";
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {MatDialogModule} from "@angular/material/dialog";
+import { TwoStepAuthComponent } from './two-step-auth/two-step-auth.component';
 
 
 @NgModule({
   declarations: [
     LoginComponent,
     RegisterComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    TwoStepAuthComponent
   ],
     exports: [
         LoginComponent,
