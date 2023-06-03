@@ -5,6 +5,7 @@ import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
 import {ResetPasswordComponent} from "../reset-password/reset-password.component";
 import {MatDialog} from "@angular/material/dialog";
+import {TwoStepAuthComponent} from "../two-step-auth/two-step-auth.component";
 
 @Component({
   selector: 'app-login',
@@ -26,36 +27,36 @@ export class LoginComponent implements OnInit{
     }
 
     logIn() {
-    let email = this.loginForm.value.mail;
-    let password = this.loginForm.value.password;
+        let email = this.loginForm.value.mail;
+        let password = this.loginForm.value.password;
 
-    if (this.loginForm.valid && email !== null && email !== undefined && password !== null && password !== undefined){
-      let loginCredentials : LoginCredentials = {
-        email: email,
-        password: password
-      }
-      this.authService.login(loginCredentials).subscribe({
-        next: (result) => {
-          localStorage.setItem('user', JSON.stringify(result));
-          this.authService.setUserLogged();
-          this.router.navigate(['home']);
-        },
-        error: (error) => {
-          if (error.error !== null){
-              alert(error.error.message);
-              if (error.error.message == "Your password expired!") {
-                  this.forgotPassword();
-              }
-          } else {
-              alert("Login Failed!");
-          }
-
+        if (this.loginForm.valid && email !== null && email !== undefined && password !== null && password !== undefined){
+            let loginCredentials : LoginCredentials = {
+                email: email,
+                password: password
+            }
+            this.authService.login(loginCredentials).subscribe({
+                next: (result) => {
+                    // localStorage.setItem('user', JSON.stringify(result));
+                    // this.authService.setUserLogged();
+                    // this.router.navigate(['home']);
+                    alert("An authentication code has been sent to your email.")
+                    this.dialog.open(TwoStepAuthComponent, {data: {email: email}});
+                }, error: (error) => {
+                    if (error.error !== null){
+                        console.log(error);
+                        alert(error.error.message);
+                        if (error.error.message == "Your password expired!") {
+                            this.forgotPassword();
+                        }
+                    } else {
+                        alert("Login Failed!");
+                    }
+                }
+            });
+        } else {
+            alert("Form is invalid!");
         }
-      });
-    } else {
-      alert("Form is invalid!");
-    }
-
     }
 
     changePasswordState(){
