@@ -19,6 +19,8 @@ export class AddCertificateComponent implements OnInit{
     addCertificateForm = new FormGroup({
         issuerSerialNumber: new FormControl('', [ Validators.required])
     });
+
+    flag0: boolean = true;
     flag1: boolean = true;
     flag2: boolean = true;
     flag3: boolean = true;
@@ -26,6 +28,7 @@ export class AddCertificateComponent implements OnInit{
     flag5: boolean = true;
     flag6: boolean = true;
     flag7: boolean = true;
+    flag8: boolean = true;
 
 
     constructor(private requestService: RequestService, private authService: AuthService) {
@@ -82,6 +85,9 @@ export class AddCertificateComponent implements OnInit{
     getSelectedFlags(): string {
         let selectedFlags = [];
 
+        if (this.flag0) {
+            selectedFlags.push("0");
+        }
         if (this.flag1) {
             selectedFlags.push("1");
         }
@@ -103,9 +109,14 @@ export class AddCertificateComponent implements OnInit{
         if (this.flag7) {
             selectedFlags.push("7");
         }
+        if (this.flag8) {
+            selectedFlags.push("8");
+        }
 
         if (selectedFlags.length == 0)
             return "";
+
+        alert(selectedFlags);
 
         return selectedFlags.join(",");
     }
