@@ -60,6 +60,12 @@
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
+            "options": {
+                "browserTarget": "IB-Tim14-Frontend:build",
+                "ssl": true,
+                "sslKey": "2613794723163470693_Milos_Cuturic.key",
+                "sslCert": "2613794723163470693_Milos_Cuturic.crt"
+            },
           "configurations": {
             "production": {
               "browserTarget": "IB-Tim14-Frontend:build:production"
