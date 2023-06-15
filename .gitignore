@@ -44,3 +44,6 @@ Thumbs.db
 ### Certificates ###
 *.crt
 *.key
+
+### Credentials ###
+credentials.ts
