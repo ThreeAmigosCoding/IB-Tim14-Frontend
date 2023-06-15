@@ -9,35 +9,35 @@
       <mat-label>Name</mat-label>
       <input matInput type="text" name="name" formControlName="name" style="background-color: #4A4A4A"/>
       <mat-icon matPrefix svgIcon="user_icon"></mat-icon>
-<!--      <mat-error *ngIf="registrationForm?.get('name')?.invalid">{{ generateErrString(registrationForm.get('name')?.errors) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('name')?.invalid">Invalid name</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>Surname</mat-label>
       <input matInput type="text" name="surname" formControlName="surname" style="background-color: #4A4A4A"/>
       <mat-icon matPrefix svgIcon="user_icon"></mat-icon>
-<!--      <mat-error *ngIf="registrationForm?.get('surname')?.invalid">{{ generateErrString(registrationForm.get('surname')?.errors) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('surname')?.invalid">Invalid surname</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>Address</mat-label>
       <input matInput type="text" name="address" formControlName="address" style="background-color: #4A4A4A"/>
       <mat-icon matPrefix svgIcon="location_icon"></mat-icon>
-      <!--      <mat-error *ngIf="registrationForm?.get('surname')?.invalid">{{ generateErrString(registrationForm.get('surname')?.errors) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('address')?.invalid">Invalid address</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>Mail</mat-label>
       <input matInput type="text" name="mail" formControlName="email" style="background-color: #4A4A4A"/>
       <mat-icon matPrefix svgIcon="envelope_closed_icon"></mat-icon>
-<!--      <mat-error *ngIf="registrationForm?.get('email')?.invalid">{{ generateErrString(registrationForm.get('email')?.errors) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('email')?.invalid">Invalid email</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>Phone</mat-label >
       <input matInput type="text" name="phone" formControlName="phone" style="background-color: #4A4A4A"/>
       <mat-icon matPrefix svgIcon="phone_icon"></mat-icon>
-<!--      <mat-error *ngIf="registrationForm?.get('phone')?.invalid">{{ generateErrString(registrationForm.get('phone')?.errors) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('phone')?.invalid">Invalid phone number</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
@@ -50,7 +50,7 @@
         <mat-icon>{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-icon matPrefix svgIcon="lock_close_icon"></mat-icon>
-<!--      <mat-error *ngIf="registrationForm?.get('password')?.invalid">{{ generateErrString(registrationForm.get('password')?.errors, 3) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('password')?.invalid">Password must contain at least 8 characters, 1 uppercase letter, q special character and 1 number</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
@@ -63,7 +63,7 @@
         <mat-icon>{{hideConfirmPassword ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
       <mat-icon matPrefix svgIcon="lock_close_icon"></mat-icon>
-<!--      <mat-error *ngIf="registrationForm?.get('confirmPassword')?.invalid">{{ generateErrString(registrationForm.get('confirmPassword')?.errors, 3) }}</mat-error>-->
+        <mat-error *ngIf="registrationForm?.get('confirmPassword')?.invalid">Passwords does not match</mat-error>
     </mat-form-field>
 
     <div id="recaptcha" class="g-recaptcha"></div>

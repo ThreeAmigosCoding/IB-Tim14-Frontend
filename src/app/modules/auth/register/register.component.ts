@@ -40,13 +40,32 @@ export class RegisterComponent implements OnInit{
   }
 
   registrationForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    surname: new FormControl('', Validators.required),
-    address: new FormControl('', Validators.required),
-    email: new FormControl('', [ Validators.required, Validators.email]),
-    phone: new FormControl('', [Validators.required]),
-    password: new FormControl('', [Validators.min(3), Validators.required]),
-    confirmPassword: new FormControl('', [Validators.required, this.validatePasswordMatch])
+    name: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]*$')]),
+    surname: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^[a-zA-Z]*$')]),
+    address: new FormControl('', [
+        Validators.required,
+        Validators.minLength(10),
+        Validators.maxLength(50),
+        Validators.pattern('[a-zA-Z0-9,-/ ]+')]),
+    email: new FormControl('', [
+        Validators.required,
+        Validators.email]),
+    phone: new FormControl('', [
+        Validators.required,
+        Validators.minLength(5),
+        Validators.maxLength(15),
+        Validators.pattern('^[0-9+]+$')]),
+    password: new FormControl('', [
+        Validators.minLength(8),
+        Validators.required,
+        Validators.pattern('^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9]).{8,}$')]),
+    confirmPassword: new FormControl('', [
+        Validators.required,
+        this.validatePasswordMatch])
   });
 
   changePasswordState(){
