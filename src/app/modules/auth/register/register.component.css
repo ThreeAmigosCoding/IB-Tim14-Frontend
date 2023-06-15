@@ -62,6 +62,10 @@ mat-label{
   color: white;
 }
 
+#recaptcha {
+    margin-top: 20px;
+}
+
 ::ng-deep.mat-form-field-underline {
   background-color: white !important;
 }

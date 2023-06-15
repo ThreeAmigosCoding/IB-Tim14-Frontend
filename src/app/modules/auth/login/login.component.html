@@ -7,13 +7,13 @@
     <h1 class="formTitle">Sign in</h1>
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>E-Mail</mat-label>
-      <input matInput type="text" name="mail" formControlName="mail"/>
+      <input style="background-color: #4A4A4A" matInput type="text" name="mail" formControlName="mail"/>
       <mat-error *ngIf="loginForm?.get('mail')?.invalid">Invalid email</mat-error>
     </mat-form-field>
 
     <mat-form-field class="field" hideRequiredMarker>
       <mat-label>Password</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" name="password" formControlName="password"/>
+      <input matInput style="background-color: #4A4A4A" [type]="hide ? 'password' : 'text'" name="password" formControlName="password"/>
       <button mat-icon-button matSuffix type="button" (click)="changePasswordState()" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
         <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
       </button>
@@ -21,7 +21,7 @@
     </mat-form-field>
 
     <span id="forgotPasswordSpan" (click)="forgotPassword()">Forgot password?</span>
-
+    <div id="recaptcha" class="g-recaptcha"></div>
     <div>
       <button mat-raised-button type="submit" id="submitBtn">Sign in</button>
     </div>
