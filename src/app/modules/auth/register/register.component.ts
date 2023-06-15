@@ -3,6 +3,9 @@ import {AbstractControl, FormControl, FormGroup, Validators} from "@angular/form
 import {UserRegistrationData} from "../model";
 import {AuthService} from "../service/auth.service";
 import {Router} from "@angular/router";
+import {reCaptchaKey} from "../../../../environments/credentials";
+
+declare var grecaptcha: any;
 
 @Component({
   selector: 'app-register',
@@ -12,6 +15,7 @@ import {Router} from "@angular/router";
 export class RegisterComponent implements OnInit{
   hidePassword = true;
   hideConfirmPassword = true;
+  siteKey: string;
 
   validatePasswordMatch = (control: AbstractControl): {[key: string]: any} | null => {
     const password = this.registrationForm?.get('password')?.value as string;
@@ -26,9 +30,13 @@ export class RegisterComponent implements OnInit{
 
 
   constructor(private authService: AuthService, private router: Router) {
+      this.siteKey = reCaptchaKey;
   }
 
   ngOnInit(): void {
+      grecaptcha.render('recaptcha', {
+          'sitekey' : this.siteKey
+      });
   }
 
   registrationForm = new FormGroup({
@@ -50,17 +58,22 @@ export class RegisterComponent implements OnInit{
   }
 
   register() {
-    if (this.registrationForm.valid){
-      this.authService.signUp(this.generateUserData()).subscribe({
-        next: (result) =>{
-          alert("Registration successful! An activation mail has been sent to your email!");
-          this.router.navigate(['home']);
-        },
-        error: (error) => {
-          alert("Registration failed!");
+      const recaptchaResponse = grecaptcha.getResponse();
+      if (recaptchaResponse === "") {
+          alert("Verify yourself with reCAPTCHA!");
+          return;
+      }
+        if (this.registrationForm.valid){
+          this.authService.signUp(this.generateUserData(), recaptchaResponse).subscribe({
+            next: (result) =>{
+              alert("Registration successful! An activation mail has been sent to your email!");
+              this.router.navigate(['home']);
+            },
+            error: (error) => {
+              alert("Registration failed!");
+            }
+          });
         }
-      });
-    }
   }
 
   generateUserData(): UserRegistrationData{

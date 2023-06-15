@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient, HttpHeaders, HttpParams} from "@angular/common/http";
 import {LoginCredentials, MyToken, UserRegistrationData} from "../model";
 import {BehaviorSubject, Observable} from "rxjs";
 import {environment} from "../../../../environments/environment";
@@ -22,11 +22,12 @@ export class AuthService {
 
     constructor(private http: HttpClient) {this.userLogged$.next(this.getRole()); }
 
-    login(credentials: LoginCredentials): Observable<string>{
+    login(credentials: LoginCredentials, recaptchaResponse: string): Observable<string>{
         // return this.http.post<MyToken>(environment.apiHost + 'user/login', credentials, {
         //   headers: this.headers,
         // });
-        return this.http.post<string>(environment.apiHost + 'user/login', credentials);
+        const params = new HttpParams().set('recaptchaResponse', recaptchaResponse);
+        return this.http.post<string>(environment.apiHost + 'user/login', credentials, {params});
     }
 
     twoStepAuthentication(email: string, code: ɵValue<FormControl<number | null>> | undefined): Observable<MyToken> {
@@ -78,8 +79,9 @@ export class AuthService {
         this.userLogged$.next(this.getRole());
     }
 
-    signUp(user: UserRegistrationData): Observable<UserRegistrationData>{
-        return this.http.post<UserRegistrationData>(environment.apiHost + "user/register", user);
+    signUp(user: UserRegistrationData, recaptchaResponse: any): Observable<UserRegistrationData>{
+        const params = new HttpParams().set('recaptchaResponse', recaptchaResponse);
+        return this.http.post<UserRegistrationData>(environment.apiHost + "user/register", user, {params});
     }
 
     logout(){

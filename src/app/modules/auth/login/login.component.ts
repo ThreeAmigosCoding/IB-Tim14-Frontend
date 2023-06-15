@@ -6,6 +6,9 @@ import {Router} from "@angular/router";
 import {ResetPasswordComponent} from "../reset-password/reset-password.component";
 import {MatDialog} from "@angular/material/dialog";
 import {TwoStepAuthComponent} from "../two-step-auth/two-step-auth.component";
+import {reCaptchaKey} from "../../../../environments/credentials";
+
+declare var grecaptcha: any;
 
 @Component({
   selector: 'app-login',
@@ -14,8 +17,10 @@ import {TwoStepAuthComponent} from "../two-step-auth/two-step-auth.component";
 })
 export class LoginComponent implements OnInit{
     hide: boolean = true;
+    siteKey: string;
 
     constructor(private authService: AuthService, private router: Router, public dialog: MatDialog,) {
+        this.siteKey = reCaptchaKey;
     }
 
     loginForm = new FormGroup({
@@ -24,18 +29,25 @@ export class LoginComponent implements OnInit{
     });
 
     ngOnInit(): void {
+        grecaptcha.render('recaptcha', {
+            'sitekey' : this.siteKey
+        });
     }
 
     logIn() {
         let email = this.loginForm.value.mail;
         let password = this.loginForm.value.password;
-
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (recaptchaResponse === "") {
+            alert("Verify yourself with reCAPTCHA!");
+            return;
+        }
         if (this.loginForm.valid && email !== null && email !== undefined && password !== null && password !== undefined){
             let loginCredentials : LoginCredentials = {
                 email: email,
                 password: password
             }
-            this.authService.login(loginCredentials).subscribe({
+            this.authService.login(loginCredentials, recaptchaResponse).subscribe({
                 next: (result) => {
                     // localStorage.setItem('user', JSON.stringify(result));
                     // this.authService.setUserLogged();
