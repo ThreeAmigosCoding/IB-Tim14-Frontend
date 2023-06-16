@@ -1,0 +1,55 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat.core();
+
+$IB-Tim14-Frontend-primary: mat.define-palette(mat.$indigo-palette, 500, 300, 700);
+$IB-Tim14-Frontend-accent: mat.define-palette(mat.$cyan-palette, 500, 300, 700);
+$IB-Tim14-Frontend-warn: mat.define-palette(mat.$red-palette);
+
+$IB-Tim14-Frontend-theme: mat.define-dark-theme((
+  color: (
+    primary: $IB-Tim14-Frontend-primary,
+    accent: $IB-Tim14-Frontend-accent,
+    warn: $IB-Tim14-Frontend-warn,
+  ),
+  background: (
+    // Set the background colors for various components
+    // Replace with your desired colors
+    card: #1B2223,
+    dialog: #3A4F50,
+    tooltip: #0EF6CC,
+  ),
+  text: (
+    // Set the text color
+    // Replace with your desired color
+    primary: #F4FEFD,
+  )
+));
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include mat.all-component-themes($IB-Tim14-Frontend-theme);
+
+// Custom styles for input fields
+input,
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  transition: background-color 5000s;
+  -webkit-text-fill-color: #fff !important;
+}
+
+// Custom styles for icons
+mat-icon {
+  color: #F4FEFD;
+}
+

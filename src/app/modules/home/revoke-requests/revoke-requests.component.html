@@ -1,0 +1,30 @@
+<div id="revoke-requests-container">
+    <h1 class="request-status-title" *ngIf="pendingRequests.length != 0">Pending requests</h1>
+    <div class="request-status">
+        <div class="request" *ngFor="let request of pendingRequests; let i = index;">
+            <p>Certificate Serial Number: {{ request.revocationCertificateSerialNumber }}</p>
+            <p>Reason: {{ request.reason }}</p>
+            <p>Request Date: {{ request.requestDate | date:'dd/MM/yyyy HH:mm' }}</p>
+            <div class="status-decision-buttons">
+                <button class="accept-button" type="submit" (click)="acceptRequest(request.id, i)">Accept</button>
+                <button class="decline-button" type="submit" (click)="declineRequest(request.id, i)">Decline</button>
+            </div>
+        </div>
+    </div>
+    <h1 class="request-status-title" *ngIf="approvedRequests.length != 0">Approved requests</h1>
+    <div class="request-status">
+        <div class="request" *ngFor="let request of approvedRequests; let i = index;">
+            <p>Certificate Serial Number: {{ request.revocationCertificateSerialNumber }}</p>
+            <p>Reason: {{ request.reason }}</p>
+            <p>Request Date: {{ request.requestDate | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+    </div>
+    <h1 class="request-status-title" *ngIf="rejectedRequests.length != 0">Rejected requests</h1>
+    <div class="request-status">
+        <div class="request" *ngFor="let request of rejectedRequests; let i = index;">
+            <p>Certificate Serial Number: {{ request.revocationCertificateSerialNumber }}</p>
+            <p>Reason: {{ request.reason }}</p>
+            <p>Request Date: {{ request.requestDate | date:'dd/MM/yyyy HH:mm' }}</p>
+        </div>
+    </div>
+</div>

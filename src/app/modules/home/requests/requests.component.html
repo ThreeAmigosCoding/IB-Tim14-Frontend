@@ -1,0 +1,39 @@
+<div id="requests-container">
+  <h1 class="request-status-title" *ngIf="pendingRequests.length != 0">Pending requests</h1>
+  <div class="request-status">
+    <div class="request" *ngFor="let request of pendingRequests; let i = index;">
+      <p>Signature Algorithm: {{ request.signatureAlgorithm }}</p>
+      <p>Issuer Serial Number: {{ request.issuerSerialNumber }}</p>
+      <p>Request Date: {{ request.requestDate | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p>Certificate Type: {{ request.type }}</p>
+      <p>Owner: {{ request.ownerName }}</p>
+      <p>Flags: {{ request.flags }}</p>
+      <div class="status-decision-buttons" *ngIf="role == 'ROLE_ADMIN' || request.issuerOwnerId == userId">
+        <button class="accept-button" type="submit" (click)="acceptRequest(request.id, i)">Accept</button>
+        <button class="decline-button" type="submit" (click)="declineRequest(request.id, i)">Decline</button>
+      </div>
+    </div>
+  </div>
+  <h1 class="request-status-title" *ngIf="approvedRequests.length != 0">Approved requests</h1>
+  <div class="request-status">
+    <div class="request" *ngFor="let request of approvedRequests;">
+      <p>Signature Algorithm: {{ request.signatureAlgorithm }}</p>
+      <p>Issuer Serial Number: {{ request.issuerSerialNumber }}</p>
+      <p>Request Date: {{ request.requestDate | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p>Certificate Type: {{ request.type }}</p>
+      <p>Owner: {{ request.ownerName }}</p>
+      <p>Flags: {{ request.flags }}</p>
+    </div>
+  </div>
+  <h1 class="request-status-title" *ngIf="rejectedRequests.length != 0">Rejected requests</h1>
+  <div class="request-status">
+    <div class="request" *ngFor="let request of rejectedRequests;">
+      <p>Signature Algorithm: {{ request.signatureAlgorithm }}</p>
+      <p>Issuer Serial Number: {{ request.issuerSerialNumber }}</p>
+      <p>Request Date: {{ request.requestDate | date:'dd/MM/yyyy HH:mm' }}</p>
+      <p>Certificate Type: {{ request.type }}</p>
+      <p>Owner: {{ request.ownerName }}</p>
+      <p>Flags: {{ request.flags }}</p>
+    </div>
+  </div>
+</div>

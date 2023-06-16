@@ -1,0 +1,48 @@
+mat-toolbar{
+  background-color: transparent;
+  position: relative;
+
+}
+
+mat-toolbar-row{
+  padding: 50px;
+}
+
+.nav_bar_logo_button{
+  margin: 0 5px;
+  background-color: #393E46;
+  border-radius: 30px;
+  border: none;
+  font-size: 24px;
+  width: 160px;
+  height: 60px;
+  color: #FFFFFF;
+  box-shadow: 0 4px 2px -2px black;
+  position: relative;
+  z-index: 3;
+}
+
+.nav_bar_button{
+  margin: 0 5px;
+  background-color: #0EF6CC;
+  color: #151515 !important;
+  border-radius: 30px;
+  border: none;
+  font-size: 18px;
+  min-width: 160px;
+  height: 40px;
+  padding: 5px 30px;
+  box-shadow: 0 4px 2px -2px black;
+  position: relative;
+  z-index: 3;
+}
+
+mat-icon{
+  width: 90px !important;
+  height: 80px !important;
+  margin-top: -10px !important;
+}
+
+.flexExpand {
+  flex: 1 1 auto;
+}

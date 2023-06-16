@@ -1,0 +1,56 @@
+#certificates-container {
+    display: flex;
+    flex-direction: column;
+    margin: 25px 50px;
+}
+
+.certificate-status {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.certificate {
+    background-color: #393E46;
+    color: #FFFFFF;
+    border-radius: 20px;
+    padding: 10px 20px;
+    box-shadow: 6px 6px 6px -2px black;
+}
+
+.certificate p {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.certificate-status-title {
+    color: #FFFFFF;
+    font-weight: 500;
+}
+
+.download-button {
+    box-shadow: 0 4px 2px -2px black;
+    color: #222831;
+    border-radius: 20px;
+    border: transparent;
+    height: 50px;
+    font-weight: 400;
+    font-size: 18px;
+    background-color: #00FFF5;
+    margin-bottom: 10px;
+}
+
+.button-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.certificate-pick{
+    visibility: hidden;
+}
+
+.revoke-button {
+    background-color: #F84A4A !important;
+}

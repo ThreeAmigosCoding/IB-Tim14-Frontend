@@ -1,0 +1,14 @@
+<form id="two-step-auth-container"
+      [formGroup]="twoStepAuthForm" (ngSubmit)="confirm()">
+    <h1 mat-dialog-title id="title">Two-step authentication</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="field" hideRequiredMarker appearance="fill">
+            <mat-label>Authentication code</mat-label>
+            <input matInput type="number" name="code" formControlName="code"/>
+            <mat-error *ngIf="twoStepAuthForm?.get('code')?.invalid">Invalid code.</mat-error>
+        </mat-form-field>
+    </div>
+    <div id="buttonDiv" class="modal-footer" mat-dialog-actions>
+        <button mat-button type="submit">Confirm</button>
+    </div>
+</form>

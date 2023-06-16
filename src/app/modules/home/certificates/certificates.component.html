@@ -1,0 +1,53 @@
+<div id="certificates-container">
+
+    <h2 class="certificate-status-title" *ngIf="validCertificates.length != 0">Valid certificates</h2>
+    <div class="certificate-status">
+        <div class="certificate" *ngFor="let validCertificate of validCertificates">
+            <span>
+                <p>Alias: {{ validCertificate.alias }}</p>
+                <p>Signature Algorithm: {{ validCertificate.signatureAlgorithm }}</p>
+                <p>Certificate Type: {{ validCertificate.type }}</p>
+                <p>Owner: {{ validCertificate.owner.name }} {{validCertificate.owner.surname}}</p>
+                <p>Issuer: {{ validCertificate.issuerAlias }}</p>
+                <p>Valid from: {{ validCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid to: {{ validCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Serial: {{ validCertificate.serialNumber}}</p>
+                <p>Revoked: {{ validCertificate.revoked }}</p>
+                <div class="button-div">
+                    <button class="download-button" type="button" (click)="download(validCertificate.alias)">Download</button>
+                    <button class="download-button" type="button"
+                            (click)="checkValidityFromSerialNumber(validCertificate.serialNumber)">Check validity</button>
+                    <button class="download-button revoke-button" (click)="openRevocationDialog(validCertificate)">Revoke</button>
+                </div>
+            </span>
+        </div>
+    </div>
+
+    <h2 class="certificate-status-title" *ngIf="invalidCertificates.length != 0">Invalid certificates</h2>
+    <div class="certificate-status">
+        <div class="certificate" *ngFor="let invalidCertificate of invalidCertificates">
+            <span>
+                <p>Alias: {{ invalidCertificate.alias }}</p>
+                <p>Signature Algorithm: {{ invalidCertificate.signatureAlgorithm }}</p>
+                <p>Certificate Type: {{ invalidCertificate.type }}</p>
+                <p>Owner: {{ invalidCertificate.owner.name }} {{invalidCertificate.owner.surname}}</p>
+                <p>Issuer: {{ invalidCertificate.issuerAlias }}</p>
+                <p>Valid from: {{ invalidCertificate.validFrom | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Valid to: {{ invalidCertificate.validTo | date:'dd/MM/yyyy HH:mm' }}</p>
+                <p>Revoked: {{ invalidCertificate.revoked }}</p>
+                <div class="button-div">
+                    <button class="download-button" type="button" (click)="download(invalidCertificate.alias)">Download</button>
+                    <button class="download-button" type="button"
+                            (click)="checkValidityFromSerialNumber(invalidCertificate.serialNumber)">Check validity</button>
+                </div>
+            </span>
+        </div>
+    </div>
+
+    <div>
+        <h2 class="certificate-status-title">Check certificate validity from uploaded copy</h2>
+        <button class="download-button" (click)="fileInput.click()">Choose file</button>
+        <input type="file" #fileInput class="certificate-pick" (change)="checkValidityFromCopy($event)" (click)="onFileInputClick($event)">
+    </div>
+
+</div>
