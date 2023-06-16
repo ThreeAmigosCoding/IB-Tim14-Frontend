@@ -10,6 +10,7 @@ import { HttpClientModule} from "@angular/common/http";
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import { TwoStepAuthComponent } from './two-step-auth/two-step-auth.component';
+import {GoogleSigninButtonModule} from "@abacritt/angularx-social-login";
 
 
 @NgModule({
@@ -30,7 +31,8 @@ import { TwoStepAuthComponent } from './two-step-auth/two-step-auth.component';
         MatIconModule,
         MatButtonModule,
         HttpClientModule,
-        MatDialogModule
+        MatDialogModule,
+        GoogleSigninButtonModule
     ]
 })
 export class AuthModule { }

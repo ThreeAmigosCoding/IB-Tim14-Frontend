@@ -30,6 +30,10 @@ export class AuthService {
         return this.http.post<string>(environment.apiHost + 'user/login', credentials, {params});
     }
 
+    oauth(idToken: any): Observable<any>{
+        return this.http.post<any>(environment.apiHost + 'user/oauth', idToken);
+    }
+
     twoStepAuthentication(email: string, code: ɵValue<FormControl<number | null>> | undefined): Observable<MyToken> {
         return this.http.post<MyToken>(
             environment.apiHost + 'user/two-step-authentication/' + email + "/" + code, {
