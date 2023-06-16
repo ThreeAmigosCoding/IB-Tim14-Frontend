@@ -6,6 +6,7 @@ import {environment} from "../../../../environments/environment";
 import {JwtHelperService} from "@auth0/angular-jwt";
 import {PasswordReset} from "../reset-password/reset-password.component";
 import {FormControl, ɵValue} from "@angular/forms";
+import {SocialAuthService} from "@abacritt/angularx-social-login";
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,7 @@ export class AuthService {
     userLogged$ = new BehaviorSubject<any>(null);
     userLoggedState$ = this.userLogged$.asObservable();
 
-    constructor(private http: HttpClient) {this.userLogged$.next(this.getRole()); }
+    constructor(private http: HttpClient, private socialAuthService: SocialAuthService) {this.userLogged$.next(this.getRole()); }
 
     login(credentials: LoginCredentials, recaptchaResponse: string): Observable<string>{
         // return this.http.post<MyToken>(environment.apiHost + 'user/login', credentials, {
@@ -28,6 +29,10 @@ export class AuthService {
         // });
         const params = new HttpParams().set('recaptchaResponse', recaptchaResponse);
         return this.http.post<string>(environment.apiHost + 'user/login', credentials, {params});
+    }
+
+    oauth(idToken: any): Observable<MyToken>{
+        return this.http.post<MyToken>(environment.apiHost + 'user/oauth', idToken);
     }
 
     twoStepAuthentication(email: string, code: ɵValue<FormControl<number | null>> | undefined): Observable<MyToken> {
@@ -86,6 +91,7 @@ export class AuthService {
 
     logout(){
         localStorage.removeItem('user');
+        this.socialAuthService.signOut().then();
         this.setUserLogged();
     }
 

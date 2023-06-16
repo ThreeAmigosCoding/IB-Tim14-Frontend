@@ -7,6 +7,7 @@ import {ResetPasswordComponent} from "../reset-password/reset-password.component
 import {MatDialog} from "@angular/material/dialog";
 import {TwoStepAuthComponent} from "../two-step-auth/two-step-auth.component";
 import {reCaptchaKey} from "../../../../environments/credentials";
+import {GoogleLoginProvider, SocialAuthService} from "@abacritt/angularx-social-login";
 
 declare var grecaptcha: any;
 
@@ -19,7 +20,7 @@ export class LoginComponent implements OnInit{
     hide: boolean = true;
     siteKey: string;
 
-    constructor(private authService: AuthService, private router: Router, public dialog: MatDialog,) {
+    constructor(private authService: AuthService, private router: Router, public dialog: MatDialog, private socialAuthService: SocialAuthService) {
         this.siteKey = reCaptchaKey;
     }
 
@@ -31,6 +32,17 @@ export class LoginComponent implements OnInit{
     ngOnInit(): void {
         grecaptcha.render('recaptcha', {
             'sitekey' : this.siteKey
+        });
+        this.socialAuthService.authState.subscribe((user) => {
+            this.authService.oauth({idToken: user.idToken}).subscribe({
+                next : result => {
+                    localStorage.setItem('user', JSON.stringify(result));
+                    this.authService.setUserLogged();
+                    this.router.navigate(['home']);
+                }, error : err => {
+                    alert(err.error.message);
+                }
+            });
         });
     }
 
