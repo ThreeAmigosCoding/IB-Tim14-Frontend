@@ -1,27 +1,41 @@
-# IBTim14Frontend
+# X509 Certificates Management
+## Overview
+This project is a web application designed for X509 certificate management.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.0.1.
+## User Roles
+- Unauthenticated user: Can register on the system to obtain a standard account. If they already own an account, they can log in.
+- Authenticated user: A user logged into their profile can view and download all certificates, request issuance of certificates to be signed by others, request revocation of certain certificates, and execute certificate validation. Users can be owners of only intermediate or end certificates.
+- Admin: A special user who manages root certificates and approves requests for certificates signed by root certificates. They can perform all the actions an authenticated user can.
 
-## Development server
+## System Components
+- Local file storage
+- Database
+- [Backend](https://github.com/ThreeAmigosCoding/IB-Tim14-Backend)
+- [Frontend](https://github.com/ThreeAmigosCoding/IB-Tim14-Frontend)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Functionalities
+- User profile registration, confirmation, and system login.
+- Password recovery and rotation mechanisms.
+- Overview and download of all certificates.
+- Certificate validity check based on identifiers or uploaded copies.
+- Certificate request creation, overview, approval, or denial.
+- Certificate revocation by authenticated users or admins.
+- HTTPS communication for the application and between the database and backend.
+- Two-factor authentication during user login.
+- ReCAPTCHA for forms to protect from spamming.
+- Implementation of OAuth protocol for delegated access.
+ 
+- Data validation: Injection attacks prevention, XSS attacks prevention, path traversal attacks prevention, data validation, and file type and size check for uploads.
+- Data protection: Sensitive data handling, encrypted data storage, hashed passwords, and secret keys storage.
 
-## Code scaffolding
+## Authors
+- [Miloš Čuturić](https://github.com/cuturic01)
+- [Luka Đorđević](https://github.com/lukaDjordjevic01)
+- [Marko Janošević](https://github.com/janosevicsm)
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+## Academic Context
+This project was developed for the purposes of the course [Information Security](http://www.ftn.uns.ac.rs/1604112244/informaciona-bezbednost).
+### Course Assistant
+- Nikola Milosavljević
+### Course Professor
+- [Goran Sladić](https://www.linkedin.com/in/goran/)
