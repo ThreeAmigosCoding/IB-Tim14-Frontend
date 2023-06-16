@@ -33,11 +33,16 @@ export class LoginComponent implements OnInit{
         grecaptcha.render('recaptcha', {
             'sitekey' : this.siteKey
         });
-
         this.socialAuthService.authState.subscribe((user) => {
-            // this.user = user;
-            // this.loggedIn = (user != null);
-            this.authService.oauth({idToken: user.idToken}).subscribe();
+            this.authService.oauth({idToken: user.idToken}).subscribe({
+                next : result => {
+                    localStorage.setItem('user', JSON.stringify(result));
+                    this.authService.setUserLogged();
+                    this.router.navigate(['home']);
+                }, error : err => {
+                    alert(err.error.message);
+                }
+            });
         });
     }
 
